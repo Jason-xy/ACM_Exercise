@@ -7,3 +7,5 @@ int main(void)
     printf("%hu",a+b);
     return 0;
 }
+
+//git test
