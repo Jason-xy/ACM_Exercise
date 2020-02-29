@@ -21,13 +21,11 @@ int main(void)
 
             sum += grade[i];
         }
-
         for (int i = 0; i < n; i++)
         {
             if (fabs(grade[i] - max) < 0.00001)n_max++;
             if (fabs(grade[i] - min) < 0.00001)n_min++;
         }
-
         avr = (sum - n_min * min - n_max * max) / ((double)n - (double)n_max - (double)n_min );
         if (k == t - 1)
             printf("%.2lf", avr);
