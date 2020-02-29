@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 int main(void)
 {
@@ -14,23 +13,23 @@ int main(void)
         for (int i = 0; i < n; i++)
         {
             scanf("%lf", &grade[i]);
-            if (grade[i] >= max)
+            if (grade[i] > max)
                 max = grade[i];
-            else if (grade[i] <= min)
+            if (grade[i] < min)
                 min = grade[i];
-
             sum += grade[i];
         }
-        for (int i = 0; i < n; i++)
-        {
-            if (fabs(grade[i] - max) < 0.00001)n_max++;
-            if (fabs(grade[i] - min) < 0.00001)n_min++;
-        }
+        // for (int i = 0; i < n; i++)
+        // {
+        //     if ((max - grade[i]) < 0.001)n_max++;
+        //     if ((grade[i] - min) < 0.001)n_min++;
+        // }
+        n_min = n_max = 1;
+        if(n - n_min - n_max > 0)
         avr = (sum - n_min * min - n_max * max) / ((double)n - (double)n_max - (double)n_min );
-        if (k == t - 1)
-            printf("%.2lf", avr);
         else
-            printf("%.2lf\n", avr);
+        avr = 0;
+        printf("%.2lf\n", avr);
     }
     return 0;
 }
