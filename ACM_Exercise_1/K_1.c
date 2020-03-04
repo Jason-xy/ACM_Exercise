@@ -16,9 +16,10 @@ int main(void)
 }
 void test(void)
 {
-    char* str, * p;
-    str = (char*)malloc(21000 * sizeof(char));
-    p = (char*)malloc(30 * sizeof(char));
+    char* str, * p, *p1;
+    str = (char*)malloc(2000 * sizeof(char));
+    p1 = (char*)malloc(30 * sizeof(char));
+    p = p1;
     fgets(str, 2000, stdin);
     for (p = str; *p != '\n'; p++);
     strcpy(p, " ");
@@ -31,11 +32,12 @@ void test(void)
         {
             for (p = str; *p != ' '; p++);
             strcpy(p, "\0");
-            for (; *(p - 1) != ' ' && p != str; p--);
+            for (; p != str; p--);
             printf("%s", p);
         }
         strcpy(p, "\0");
     }
     printf("\n");
     free(str);
+    ferr(p1);
 }
