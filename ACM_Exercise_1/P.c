@@ -15,19 +15,20 @@ int main(void)
         {
             word[k][i] = getchar();
             if (word[k][i] == ' ')word[k][i] = getchar();
-            if (word[k][i] > 90) word[k][i] = word[k][i] - 32;
+            //if (word[k][i] > 90) word[k][i] = word[k][i] - 32;
             if (word[k][i] == '\n')
             {
-                for (; i < len_code; i++)
-                    word[k][i] = 'E';
+                for (; i < len_code && i!=0; i++)
+                    word[k][i] = 'e';
                 flag2 = 1;
                 break;
             }
         }
         k++;
+        if(i==0)k--;
         if (flag2 == 1)break;
     }
-    for (int j = 65; j <= 90; j++)
+    for (int j = 65; j <= 122; j++)
     {
         l = 0;
         while (1)
@@ -43,7 +44,10 @@ int main(void)
             }
             if(flag == 1)
             for (int m = 0; m < k; m++)
+            {
+                if(word[m][l]>90)word[m][l]-=32;
                 printf("%c", word[m][l]);
+            }
             l++;
             if (flag == 0)break;
         }
