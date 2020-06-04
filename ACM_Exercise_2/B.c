@@ -35,7 +35,7 @@ void test(void)
 int search(char* p, char* key)
 {
     char* str1, * str2;
-    for (str1 = p; *str1 != '\n'; str1++)
+    for (str1 = p; *str1 != '\n'; str1++)9
     {
         str2 = key;
         if ((*(str1 - 1) == ' ' && *str1 == *str2)||(str1==p && *str1==*str2))
