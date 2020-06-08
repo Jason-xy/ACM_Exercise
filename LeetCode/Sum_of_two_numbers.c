@@ -19,27 +19,40 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
-    int hash[65534],temp=0;
+    int hash[65534]={0},temp=0;
     int *ans;
     ans=(int*)malloc(sizeof(int)*2);
-    for(long i=0;i<=65534;i++)hash[i]=-1;
     for(int i=0;i<numsSize;i++){
+        if((nums[i]>=0&&nums[i]<32767)||(nums[i]<=0&&nums[i]>-32767))
         hash[nums[i]+32767]=i;
     }
     for(int i=0;i<numsSize;i++){
-        temp=target-nums[i]+32767;
-        if(hash[temp]>0&&hash[temp]!=i){
-            returnSize[0]=2;
-            ans[0]=i;
-            ans[1]=hash[temp];
-            return ans;
+        if((nums[i]>=0&&nums[i]<32767)||(nums[i]<=0&&nums[i]>-32767)){
+            temp=target-nums[i]+32767;
+            if(hash[temp]>0&&hash[temp]!=i){
+                returnSize[0]=2;
+                ans[0]=i;
+                ans[1]=hash[temp];
+                return ans;
+            }
+        }
+        else{
+            temp=target-nums[i];
+            for(int j=0;j<numsSize;j++){
+                if(nums[j]==temp&&j!=i){
+                returnSize[0]=2;
+                ans[0]=i;
+                ans[1]=j;
+                return ans;
+                }
+            }
         }
     }
     returnSize[0]=0;
     return ans;
 }
-//小范围、长数组用hash表
-//bug：超过int的数报错
+//在int范围内使用hash表
+
 
 
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
