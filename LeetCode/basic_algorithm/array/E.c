@@ -13,6 +13,7 @@
 
 // 输入: [4,1,2,1,2]
 // 输出: 4
+#define NULL 0
 
 int singleNumber(int* nums, int numsSize){
     if(nums==NULL||numsSize==0){
