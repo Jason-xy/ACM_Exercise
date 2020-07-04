@@ -100,3 +100,72 @@ int myAtoi(char* str) {
 }
 //Rubbish
 
+
+int myAtoi(char* str) {
+    char* s = (char*)malloc(sizeof(char) * strlen(str));
+    int i = 0, j = 0;
+    if (!str)return 0; //空字符情况
+    for (i = 0; str[i] != 0; i++) {
+        if (str[i] == '+' || str[i] == '-' || (str[i] >= '0' && str[i] <= '9'))
+            s[j++] = str[i]; //如果为有效整数字符则拷贝
+        if (j == 0 && str[i] != ' ')return 0; //如果第一个非空格字符不是有效整数字符
+        if (s[0] == '+' || s[0] == '-') {//有符号的情况
+            if (j == 1 && !((str[i] >= '0' && str[i] <= '9')||str[i]=='-'||str[i]=='+'))return 0; //在符号后面出现非数字的情况
+            if (j >= 2 && !(str[i] >= '0' && str[i] <= '9')) {
+                if (j == 2 && (str[i] == '-' || str[i] == '+'))
+                    return 0;//连续出现两次符号
+                else
+                    if (str[i] == '-' || str[i] == '+')
+                        j--;//由于出现符号而截断
+                    break; //数字后出现非整数字符，提前截断 
+            }
+        }
+        else if (s[0] >= '0' && s[0] <= '9') {
+            if (j >= 1 && !(str[i] >= '0' && str[i] <= '9')){
+                if (str[i] == '-' || str[i] == '+')
+                        j--;//由于出现符号而截断
+                break; //数字后出现非整数字符，提前截断 
+            }
+        }
+    }
+    if (j == 0 || (j == 1 && (s[0] == '-' || s[0] == '+')))
+        return 0; //空字符或者没有出现数字
+    long ans = 0;
+    if (s[0] == '-' || s[0] == '+') {
+        for (i = 1; i <= j - 1; i++) {
+            ans = ans * 10 + (s[i] - '0');
+            if (ans > (int)ans) {
+                if (s[0] == '+')
+                    return 2147483647;
+                else
+                    return -2147483648;
+            }
+        }
+        if (s[0] == '+')
+            return (int)ans;
+        else
+            return -(int)ans;
+    }
+    else {
+        for (i = 0; i < j; i++) {
+            ans = ans * 10 + (s[i] - '0');
+            if (ans > (int)ans)
+                return 2147483647;
+        }
+        return (int)ans;
+    }
+}
+//辣鸡重构
+
+int myAtoi(char *str){
+    long i = 0;
+    int ret = sscanf(str, "%ld", &i); // 注意：读取的是%ld，不是%1d
+    if (ret) {
+        if (i > (int)i)
+            i = 2147483647;
+        else if (i < (int)i)
+            i = -2147483647;
+    }
+    return (int)i;
+}
+//涨姿势了
