@@ -21,8 +21,9 @@
 //二分查找
 int firstBadVersion(int n) {
     int pos=(n-1)/2+1,low=1,up=n;
-    while (up>low){
-        if(isBadVersion(pos)){
+    while (up>=low){
+        if(up==low)return up;
+        else if(isBadVersion(pos)){
             if(!isBadVersion(pos-1))
             return pos;
             up=pos-1;
@@ -34,5 +35,5 @@ int firstBadVersion(int n) {
         }
         pos=(up-low)/2+low;
     }
-    return up;
+    return -1;
 }
