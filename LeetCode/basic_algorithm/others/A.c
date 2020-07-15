@@ -30,5 +30,15 @@
 // 如果多次调用这个函数，你将如何优化你的算法？
 
 int hammingWeight(uint32_t n) {
-    
-}
+    int num[33]={0};
+    int i=0,ans=0;
+    while(n){
+        num[i++]=n%2;
+        n/=2;
+    }
+    for(int i=0; i<33; i++){
+        ans+=num[i];
+    }
+    return ans;
+}//0ms 5.1mb
+

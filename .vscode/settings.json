@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "cmath": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "B.C": "cpp"
     },
     "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\python.exe"
 }
