@@ -27,6 +27,7 @@
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 #define true 1
 #define false 0
+#define NULL 0
 
 //待优化
 typedef int bool;
