@@ -20,13 +20,6 @@
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 int cuttingRope(int n){
-    int m1 = pow(n, 1/2), m2 = m1 + 1;
-    int left1 = n % m1, left2 = n % m2;
-    int sum1 = pow((n - left1) / m1, m1);
-    if(left1)
-    sum1 += pow(((n - left1) / m1 + 1), left1);
-    int sum2 = pow((n - left2) / m2, m2);
-    if(left2)
-    sum2 += pow(((n - left2) / m2 + 1), left2);
-    return sum1 > sum2 ? sum1 : sum2;
+    if(n > 3 && n%3) return n % 3 == 1 ? 4 * pow(3,n/3 - 1) : 2 * pow(3,n/3);
+    return n < 4 ? n - 1 : pow(3, n/3);
 }
