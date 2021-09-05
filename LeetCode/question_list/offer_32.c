@@ -1,13 +1,4 @@
 // 从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     struct TreeNode *left;
- *     struct TreeNode *right;
- * };
- */
-
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
