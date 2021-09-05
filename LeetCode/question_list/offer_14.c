@@ -19,7 +19,20 @@
 // 链接：https://leetcode-cn.com/problems/jian-sheng-zi-lcof
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+//算术几何均值不等式 -> e最优
 int cuttingRope(int n){
-    if(n > 3 && n%3) return n % 3 == 1 ? 4 * pow(3,n/3 - 1) : 2 * pow(3,n/3);
-    return n < 4 ? n - 1 : pow(3, n/3);
+    long long res = 1;
+    if(n == 2)
+        return res * 1 % 1000000007;
+    else if(n == 3)
+        return res * 2 % 1000000007;
+    else if(n == 4)
+        return res * 4 % 1000000007;
+    else{
+        while(n >= 5){
+            res = res * 3 % 1000000007 ;
+            n -= 3;
+        }
+        return res * n % 1000000007;
+    }
 }
