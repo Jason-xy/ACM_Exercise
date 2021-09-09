@@ -32,6 +32,7 @@
 // 链接：https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+//遍历
 bool findNumberIn2DArray(int** matrix, int matrixSize, int* matrixColSize, int target){
     int i = 0, j = 0;
     for(i = 0; i < matrixSize; i++){
@@ -41,8 +42,9 @@ bool findNumberIn2DArray(int** matrix, int matrixSize, int* matrixColSize, int t
         }
     }
     return false;
-}//遍历
+}
 
+//遍历优化
 bool findNumberIn2DArray(int** matrix, int matrixSize, int* matrixColSize, int target){
     int i = 0, j = 0;
     if(!*matrixColSize || !matrixSize || !matrix)return false;
@@ -54,3 +56,25 @@ bool findNumberIn2DArray(int** matrix, int matrixSize, int* matrixColSize, int t
     }
     return false;
 }
+
+//二分法
+bool findNumberIn2DArray(int** matrix, int matrixSize, int* matrixColSize, int target){
+    if(!matrix || !matrixSize || !*matrixColSize)return false;
+    int mid = 0;
+    int head = 0, tail = matrixSize * (*matrixColSize) - 1;
+    int x = 0, y = 0;
+    while(head <= tail) {
+        mid = (head + tail) / 2;
+        x = mid % *matrixColSize;
+        y = mid / matrixSize;
+        if(target == matrix[x][y])
+            return true;
+        else if(target > matrix[x][y])
+            head = mid + 1;
+        else if(target < matrix[x][y])
+            tail = mid - 1;
+    }
+    return false;
+}
+
+
